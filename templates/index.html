@@ -1,0 +1,27 @@
+<html>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf-8">
+        var socket = io();
+
+        socket.on('connect', function() {
+            console.log('connected')
+            socket.emit('my event', {data: 'I\'m connected!'});
+        });
+
+        socket.on('binance', function (msg) {
+            var a = document.getElementById('binance_price');
+            a.textContent = JSON.stringify(msg, undefined, 2);
+        })
+
+        socket.on('kraken', function (msg) {
+            var a = document.getElementById('kraken_price');
+            a.textContent = JSON.stringify(msg, undefined, 2);
+        })
+    </script>
+
+    <h2> Binance prices </h2>
+    <pre id="binance_price"></pre>
+
+    <h2> Kraken prices </h2>
+    <pre id="kraken_price"></pre>
+</html>

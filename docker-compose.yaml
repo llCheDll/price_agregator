@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  flask:
+    build: .
+    container_name: backend-flask
+    restart: on-failure
+    volumes:
+      - .:/price_agregator
+    ports:
+      - "5001:5000"
+    entrypoint:
+      - flask
+      - run
+      - --host=0.0.0.0
+
